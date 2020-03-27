@@ -571,6 +571,20 @@ fn polkadot_development_config_genesis() -> polkadot::GenesisConfig {
 	)
 }
 
+fn polkadot_benchmark_config_genesis() -> polkadot::GenesisConfig {
+	polkadot_testnet_genesis(
+		vec![
+			get_authority_keys_from_seed("Alice"),
+		],
+		get_account_id_from_seed::<sr25519::Public>("Alice"),
+		Some({
+			(0..10_000).map(|i| {
+					get_account_id_from_seed::<sr25519::Public>(&i.to_string())
+			}).collect()
+		}),
+	)
+}
+
 fn kusama_development_config_genesis() -> kusama::GenesisConfig {
 	kusama_testnet_genesis(
 		vec![
@@ -587,6 +601,20 @@ pub fn polkadot_development_config() -> PolkadotChainSpec {
 		"Development",
 		"dev",
 		polkadot_development_config_genesis,
+		vec![],
+		None,
+		Some(DEFAULT_PROTOCOL_ID),
+		None,
+		Default::default(),
+	)
+}
+
+/// Polkadot benchmark config (single validator Alice)
+pub fn polkadot_benchmark_config() -> PolkadotChainSpec {
+	PolkadotChainSpec::from_genesis(
+		"Benchmark",
+		"benchmark",
+		polkadot_benchmark_config_genesis,
 		vec![],
 		None,
 		Some(DEFAULT_PROTOCOL_ID),
