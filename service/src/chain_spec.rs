@@ -575,14 +575,14 @@ fn polkadot_development_config_genesis() -> polkadot::GenesisConfig {
 	)
 }
 
-fn polkadot_benchmark_config_genesis() -> polkadot::GenesisConfig {
+fn polkadot_benchmark_config_genesis(endowed: u32) -> polkadot::GenesisConfig {
 	polkadot_testnet_genesis(
 		vec![
 			get_authority_keys_from_seed("Alice"),
 		],
 		get_account_id_from_seed::<sr25519::Public>("Alice"),
 		Some({
-			(0..100_000).map(|i| {
+			(0..endowed).map(|i| {
 					get_account_id_from_seed::<sr25519::Public>(&i.to_string())
 			}).collect()
 		}),
@@ -614,11 +614,11 @@ pub fn polkadot_development_config() -> PolkadotChainSpec {
 }
 
 /// Polkadot benchmark config (single validator Alice)
-pub fn polkadot_benchmark_config() -> PolkadotChainSpec {
+pub fn polkadot_benchmark_config(endowed: u32) -> PolkadotChainSpec {
 	PolkadotChainSpec::from_genesis(
 		"Benchmark",
 		"benchmark",
-		polkadot_benchmark_config_genesis,
+		move || { polkadot_benchmark_config_genesis(endowed) },
 		vec![],
 		None,
 		Some(DEFAULT_PROTOCOL_ID),

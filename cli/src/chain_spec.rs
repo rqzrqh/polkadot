@@ -22,8 +22,12 @@ use service;
 /// specification).
 #[derive(Clone, Debug)]
 pub enum ChainSpec {
-	/// Whatever the current polkadot runtime is, with Alice as an auth and 100_000 endowed accounts.
-	PolkadotBenchmark,
+	/// Whatever the current polkadot runtime is, with Alice as an auth and N endowed accounts.
+	PolkadotBenchmark10,
+	PolkadotBenchmark100,
+	PolkadotBenchmark1000,
+	PolkadotBenchmark10000,
+	PolkadotBenchmark100000,
 	/// Whatever the current polkadot runtime is, with just Alice as an auth.
 	PolkadotDevelopment,
 	/// Whatever the current pokadot runtime is, with simple Alice/Bob auths.
@@ -52,7 +56,11 @@ impl Default for ChainSpec {
 impl ChainSpec {
 	pub(crate) fn load(self) -> Result<Box<dyn service::ChainSpec>, String> {
 		Ok(match self {
-			ChainSpec::PolkadotBenchmark => Box::new(service::chain_spec::polkadot_benchmark_config()),
+			ChainSpec::PolkadotBenchmark10 => Box::new(service::chain_spec::polkadot_benchmark_config(10)),
+			ChainSpec::PolkadotBenchmark100 => Box::new(service::chain_spec::polkadot_benchmark_config(100)),
+			ChainSpec::PolkadotBenchmark1000 => Box::new(service::chain_spec::polkadot_benchmark_config(1_000)),
+			ChainSpec::PolkadotBenchmark10000 => Box::new(service::chain_spec::polkadot_benchmark_config(10_000)),
+			ChainSpec::PolkadotBenchmark100000 => Box::new(service::chain_spec::polkadot_benchmark_config(100_000)),
 			ChainSpec::PolkadotDevelopment => Box::new(service::chain_spec::polkadot_development_config()),
 			ChainSpec::PolkadotLocalTestnet => Box::new(service::chain_spec::polkadot_local_testnet_config()),
 			ChainSpec::PolkadotStagingTestnet => Box::new(service::chain_spec::polkadot_staging_testnet_config()),
@@ -66,7 +74,11 @@ impl ChainSpec {
 
 	pub(crate) fn from(s: &str) -> Option<Self> {
 		match s {
-			"polkadot-benchmark" => Some(ChainSpec::PolkadotBenchmark),
+			"polkadot-benchmark-10" => Some(ChainSpec::PolkadotBenchmark10),
+			"polkadot-benchmark-100" => Some(ChainSpec::PolkadotBenchmark100),
+			"polkadot-benchmark-1000" => Some(ChainSpec::PolkadotBenchmark1000),
+			"polkadot-benchmark-10000" => Some(ChainSpec::PolkadotBenchmark10000),
+			"polkadot-benchmark-100000" => Some(ChainSpec::PolkadotBenchmark100000),
 			"polkadot-dev" | "dev" => Some(ChainSpec::PolkadotDevelopment),
 			"polkadot-local" => Some(ChainSpec::PolkadotLocalTestnet),
 			"polkadot-staging" => Some(ChainSpec::PolkadotStagingTestnet),
