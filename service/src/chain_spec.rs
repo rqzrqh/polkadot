@@ -418,7 +418,11 @@ pub fn polkadot_testnet_genesis(
 	root_key: AccountId,
 	endowed_accounts: Option<Vec<AccountId>>,
 ) -> polkadot::GenesisConfig {
-	let endowed_accounts: Vec<AccountId> = endowed_accounts.unwrap_or_else(testnet_accounts);
+	let mut endowed_accounts: Vec<AccountId> = endowed_accounts.unwrap_or_else(testnet_accounts);
+	for (account_1, account_2, _, _, _, _, _) in initial_authorities.clone() {
+		endowed_accounts.push(account_1.clone());
+		endowed_accounts.push(account_2.clone());
+	}
 
 	const ENDOWMENT: u128 = 1_000_000 * DOTS;
 	const STASH: u128 = 100 * DOTS;
@@ -578,7 +582,7 @@ fn polkadot_benchmark_config_genesis() -> polkadot::GenesisConfig {
 		],
 		get_account_id_from_seed::<sr25519::Public>("Alice"),
 		Some({
-			(0..10_000).map(|i| {
+			(0..100_000).map(|i| {
 					get_account_id_from_seed::<sr25519::Public>(&i.to_string())
 			}).collect()
 		}),
