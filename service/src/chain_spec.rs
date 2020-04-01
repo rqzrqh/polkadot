@@ -140,6 +140,7 @@ fn polkadot_staging_testnet_config_genesis() -> polkadot::GenesisConfig {
 			slash_reward_fraction: Perbill::from_percent(10),
 			.. Default::default()
 		}),
+		elections_phragmen: Some(Default::default()),
 		democracy: Some(Default::default()),
 		collective_Instance1: Some(polkadot::CouncilConfig {
 			members: vec![],
@@ -294,6 +295,7 @@ fn kusama_staging_testnet_config_genesis() -> kusama::GenesisConfig {
 				slash_reward_fraction: Perbill::from_percent(10),
 				.. Default::default()
 		}),
+		elections_phragmen: Some(Default::default()),
 		democracy: Some(Default::default()),
 		collective_Instance1: Some(kusama::CouncilConfig {
 			members: vec![],
@@ -456,6 +458,7 @@ pub fn polkadot_testnet_genesis(
 				slash_reward_fraction: Perbill::from_percent(10),
 				.. Default::default()
 		}),
+		elections_phragmen: Some(Default::default()),
 		democracy: Some(polkadot::DemocracyConfig::default()),
 		collective_Instance1: Some(polkadot::CouncilConfig {
 			members: vec![],
@@ -532,6 +535,7 @@ pub fn kusama_testnet_genesis(
 			slash_reward_fraction: Perbill::from_percent(10),
 			.. Default::default()
 		}),
+		elections_phragmen: Some(Default::default()),
 		democracy: Some(kusama::DemocracyConfig::default()),
 		collective_Instance1: Some(kusama::CouncilConfig {
 			members: vec![],
