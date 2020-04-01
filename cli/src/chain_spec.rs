@@ -22,11 +22,15 @@ use service;
 /// specification).
 #[derive(Clone, Debug)]
 pub enum ChainSpec {
-	/// Whatever the current polkadot runtime is, with Alice as an auth and N endowed accounts.
+	/// Whatever the current polkadot runtime is, with Alice as an auth and 10 endowed accounts.
 	PolkadotBenchmark10,
+	/// Whatever the current polkadot runtime is, with Alice as an auth and 100 endowed accounts.
 	PolkadotBenchmark100,
+	/// Whatever the current polkadot runtime is, with Alice as an auth and 1000 endowed accounts.
 	PolkadotBenchmark1000,
+	/// Whatever the current polkadot runtime is, with Alice as an auth and 10000 endowed accounts.
 	PolkadotBenchmark10000,
+	/// Whatever the current polkadot runtime is, with Alice as an auth and 100000 endowed accounts.
 	PolkadotBenchmark100000,
 	/// Whatever the current polkadot runtime is, with just Alice as an auth.
 	PolkadotDevelopment,
