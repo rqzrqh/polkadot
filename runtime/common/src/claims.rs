@@ -722,29 +722,5 @@ mod benchmarking {
 				let _maybe_signer = super::Module::<T>::eth_recover(&signature, &data);
 			}
 		}
-
-		verify_10 {
-			let i in 0 .. 10;
-		}: {
-			ensure!(system::Account::<T>::iter().count() >= 10, "less than 10 users");
-		}
-
-		verify_100 {
-			let i in 0 .. 10;
-		}: {
-			ensure!(system::Account::<T>::iter().count() >= 100, "less than 100 users");
-		}
-
-		verify_1000 {
-			let i in 0 .. 10;
-		}: {
-			ensure!(system::Account::<T>::iter().count() >= 1000, "less than 1000 users");
-		}
-
-		verify_10000 {
-			let i in 0 .. 10;
-		}: {
-			ensure!(system::Account::<T>::iter().count() >= 10000, "less than 10000 users");
-		}
 	}
 }
