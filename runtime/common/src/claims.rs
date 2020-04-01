@@ -646,8 +646,6 @@ mod benchmarking {
 	use sp_runtime::DispatchResult;
 	use sp_runtime::traits::ValidateUnsigned;
 	use crate::claims::Call;
-	use frame_support::ensure;
-	use frame_support::storage::IterableStorageMap;
 
 	const SEED: u32 = 0;
 
