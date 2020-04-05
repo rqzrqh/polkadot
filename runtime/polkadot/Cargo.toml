@@ -134,6 +134,7 @@ std = [
 	"vesting/std",
 ]
 runtime-benchmarks = [
+	"collective/runtime-benchmarks",
 	"frame-benchmarking",
 	"frame-support/runtime-benchmarks",
 	"runtime-common/runtime-benchmarks",
@@ -141,13 +142,10 @@ runtime-benchmarks = [
 	"system/runtime-benchmarks",
 	"sp-runtime/runtime-benchmarks",
 	"balances/runtime-benchmarks",
-	"collective/runtime-benchmarks",
 	"identity/runtime-benchmarks",
 	"timestamp/runtime-benchmarks",
 	"treasury/runtime-benchmarks",
-	"staking/runtime-benchmarks",
 	"vesting/runtime-benchmarks",
-	"collective/runtime-benchmarks",
 	"pallet-session-benchmarking",
 	"staking/runtime-benchmarks",
 	"im-online/runtime-benchmarks",

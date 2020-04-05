@@ -337,7 +337,7 @@ decl_storage! {
 		pub RelayDispatchQueue: map hasher(twox_64_concat) ParaId => Vec<UpwardMessage>;
 		/// Size of the dispatch queues. Separated from actual data in order to avoid costly
 		/// decoding when checking receipt validity. First item in tuple is the count of messages
-		///	second if the total length (in bytes) of the message payloads.
+		/// second if the total length (in bytes) of the message payloads.
 		pub RelayDispatchQueueSize: map hasher(twox_64_concat) ParaId => (u32, u32);
 		/// The ordered list of ParaIds that have a `RelayDispatchQueue` entry.
 		NeedsDispatch: Vec<ParaId>;
@@ -399,7 +399,7 @@ decl_module! {
 		type Error = Error<T>;
 
 		/// Provide candidate receipts for parachains, in ascending order by id.
-		#[weight = SimpleDispatchInfo::FixedNormal(1_000_000)]
+		#[weight = SimpleDispatchInfo::FixedMandatory(1_000_000)]
 		pub fn set_heads(origin, heads: Vec<AttestedCandidate>) -> DispatchResult {
 			ensure_none(origin)?;
 			ensure!(!<DidUpdate>::exists(), Error::<T>::TooManyHeadUpdates);
